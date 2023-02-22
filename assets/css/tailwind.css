@@ -8,6 +8,10 @@
   font-style: normal;
 }
 
+body {
+  cursor:url('../imgs/cursor.svg'), auto;
+}
+
 /*
 ! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
 */
