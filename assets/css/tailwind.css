@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Nico-Moji';
 
-  src: url('/tailwind/font/Nico-Moji.ttf.woff') format('woff');
+  src: url('./asstes/font/Nico-Moji.ttf.woff') format('woff');
 
   font-weight: normal;
 
