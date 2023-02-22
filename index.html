@@ -1,24 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="cursor-game">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bricks breaker max</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/tailwind.css">
 </head>
-<body>
-    <!-- header start -->
-Hello Developers 
-    <!-- header end -->
+<body class="dark:bg-gray-900">
+    <div class="bg-cover bg-no-repeat h-screen py-1" style="background-image: url('./assets/imgs/main_menu.png');">       
+           <!-- Dark/Light mode svg section started-->
+           <div class="ml-3 mt-1 md:ml-0">
+            <!-- Dark mode -->
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-4 h-4 cursor-pointer hidden" id="dark_mode" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+               <defs>
+               </defs>
+               <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                  <path d="M 87.823 60.7 c -0.463 -0.423 -1.142 -0.506 -1.695 -0.214 c -15.834 8.398 -35.266 2.812 -44.232 -12.718 c -8.966 -15.53 -4.09 -35.149 11.101 -44.665 c 0.531 -0.332 0.796 -0.963 0.661 -1.574 c -0.134 -0.612 -0.638 -1.074 -1.259 -1.153 c -9.843 -1.265 -19.59 0.692 -28.193 5.66 C 13.8 12.041 6.356 21.743 3.246 33.35 S 1.732 57.08 7.741 67.487 c 6.008 10.407 15.709 17.851 27.316 20.961 C 38.933 89.486 42.866 90 46.774 90 c 7.795 0 15.489 -2.044 22.42 -6.046 c 8.601 -4.966 15.171 -12.43 18.997 -21.586 C 88.433 61.79 88.285 61.123 87.823 60.7 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: #374151; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+               </g>
+            </svg>
+            <!-- light mode -->
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-4 h-4 cursor-pointer text-red-600 hidden" fill="currentColor" id="light_mode" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+               <defs></defs>
+               <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                  <path d="M 45 68 c -12.682 0 -23 -10.317 -23 -23 c 0 -12.682 10.318 -23 23 -23 c 12.683 0 23 10.318 23 23 C 68 57.683 57.683 68 45 68 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 45 17.556 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 c 1.657 0 3 1.343 3 3 v 11.556 C 48 16.212 46.657 17.556 45 17.556 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 45 90 c -1.657 0 -3 -1.343 -3 -3 V 75.444 c 0 -1.657 1.343 -3 3 -3 c 1.657 0 3 1.343 3 3 V 87 C 48 88.657 46.657 90 45 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 14.556 48 H 3 c -1.657 0 -3 -1.343 -3 -3 c 0 -1.657 1.343 -3 3 -3 h 11.556 c 1.657 0 3 1.343 3 3 C 17.556 46.657 16.212 48 14.556 48 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 87 48 H 75.444 c -1.657 0 -3 -1.343 -3 -3 c 0 -1.657 1.343 -3 3 -3 H 87 c 1.657 0 3 1.343 3 3 C 90 46.657 88.657 48 87 48 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 66.527 26.473 c -0.768 0 -1.535 -0.293 -2.121 -0.878 c -1.172 -1.172 -1.172 -3.071 0 -4.243 l 8.171 -8.171 c 1.172 -1.172 3.07 -1.171 4.242 0 c 1.172 1.172 1.172 3.071 0 4.243 l -8.171 8.171 C 68.063 26.18 67.295 26.473 66.527 26.473 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 15.302 77.698 c -0.768 0 -1.536 -0.293 -2.121 -0.879 c -1.172 -1.171 -1.172 -3.071 0 -4.242 l 8.171 -8.171 c 1.171 -1.172 3.071 -1.172 4.242 0 c 1.172 1.171 1.172 3.071 0 4.242 l -8.171 8.171 C 16.837 77.405 16.069 77.698 15.302 77.698 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 23.473 26.473 c -0.768 0 -1.536 -0.293 -2.121 -0.878 l -8.171 -8.171 c -1.172 -1.172 -1.172 -3.071 0 -4.243 c 1.172 -1.172 3.072 -1.171 4.243 0 l 8.171 8.171 c 1.172 1.172 1.172 3.071 0 4.243 C 25.008 26.18 24.24 26.473 23.473 26.473 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 74.698 77.698 c -0.768 0 -1.535 -0.293 -2.121 -0.879 l -8.171 -8.171 c -1.172 -1.171 -1.172 -3.071 0 -4.242 c 1.172 -1.172 3.07 -1.172 4.242 0 l 8.171 8.171 c 1.172 1.171 1.172 3.071 0 4.242 C 76.233 77.405 75.466 77.698 74.698 77.698 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: white; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+               </g>
+            </svg>
+         </div>
+         <!-- Dark/Light mode svg section ended-->
 
-    <!-- main start -->
-    <div class="main">
-        <p>hello Shakib</p>
-    </div>
-    <!-- main end -->
+         
+         <!-- Creating game start menu started-->
+         <div class="flex justify-center p-2 items-center h-screen">
 
-    <!-- footer start -->
-    <h1>page ses.. so get lost</h1>
-    <!-- footer ends -->
+
+            <!-- Main menu section design started -->
+            <!-- <div class="backdrop-blur-sm bg-[#111827bd] border border-gray-500 rounded w-full h-1/2 md:w-1/2 lg:w-1/3 hidden">
+
+                     <section class="flex flex-col items-center h-full justify-center" id="mainMenu">
+                        <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-1 cursor-pointer" id="newGame">New Game</h2>
+                        <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-1 cursor-pointer" id="continueGame">Continue Game</h2>
+                        <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-1 cursor-pointer" id="selectLevel">Select Level</h2>
+                        <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-1 cursor-pointer" id="credits">Credits</h2>
+                        <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-1 cursor-pointer" id="help">Help</h2>
+                     </section>
+ 
+                     </div> -->
+                    <!-- Main menu section design ended -->
+
+                     
+
+                    <!-- "Select level" section design started -->
+
+               
+                     <div class="backdrop-blur-sm bg-[#111827bd] border border-gray-500 rounded w-full h-fit md:w-1/2 lg:w-1/2">
+                     <section class="flex flex-col items-center justify-center" id="selectLevelMenue">
+                        <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-6 underline" id="selectLevel">Select Level</h2>
+                        <section class="flex w-full justify-center">
+
+                           <div class="flex flex-wrap justify-center mb-5">
+
+                              
+                              <!-- From this line, all of the levels should be shown only mobile users -->
+                              <div class="font-game m-2 text-gray-100 bg-green-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 1</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 2</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 3</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 4</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 5</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 6</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 7</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 8</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 9</span>
+                              </div>
+
+                              <div class="font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 10</span>
+                              </div>
+
+                              <!-- Ended of all the levels should be shown only mobile users -->
+
+
+                              <!-- From this line, all of the levels should be shown only Tablet and PC users -->
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 11</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 12</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 13</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 14</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 15</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 16</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 17</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 18</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 19</span>
+                              </div>
+
+                              <div class="hidden md:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 20</span>
+                              </div>
+                              
+                              <!-- Ended all of the levels should be shown only Tablet and PC users -->
+
+                              
+                              <!-- From this line, all of the levels should be shown only PC users -->
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 21</span>
+                              </div>
+
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 22</span>
+                              </div>
+
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 23</span>
+                              </div>
+
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 24</span>
+                              </div>
+
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 25</span>
+                              </div>
+
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 26</span>
+                              </div>
+
+                              <div class="hidden lg:flex font-game m-2 text-gray-100 bg-red-700 rounded-full h-16 w-16 text-center">
+                                 <span class="flex flex-col justify-center items-center h-full text-xs p-1">Level 27</span>
+                              </div>
+                              <!-- Ended of all levels should be shown only PC users-->
+                           </div>
+                        </section>
+
+                        <!-- "Back to menu" button design section started -->
+                        <div class="w-full flex justify-start my-5">
+                        <button class="font-game text-white ml-5 cursor-game bg-[#11182757] px-4 py-1">Back</button>
+                        </div>
+                        <!-- "Back to menu" button design section ended -->
+                     </section>
+            </div>
+          <!-- "Select level" section design ended -->
+
+         </div>
+         <!-- Creating game start menu ended-->
+      </div>
+         <script src="./assets/js/theme_switch.js"></script>
 </body>
 </html>
