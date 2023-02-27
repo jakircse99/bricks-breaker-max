@@ -1,12 +1,17 @@
-import { backToHome } from "./frontEnd/menu/logicalFundamentals/backToHome.js";
-import {mainMenu} from "./frontEnd/menu/mainMenu.js";
-import {menuPush} from "./frontEnd/menu/logicalFundamentals/menuPush.js";
-import {selectLevel} from "./frontEnd/menu/selectLevel.js";
+import { mainMenu } from "./frontEnd/menu/mainMenu.js";
+import { menuPush } from "./frontEnd/menu/logicalFundamentals/menuPush.js";
+import { selectLevel } from "./frontEnd/menu/selectLevel.js";
 import { credits } from "./frontEnd/menu/credits.js";
 import { help } from "./frontEnd/menu/help.js";
 
 //It should return the main menu on start
 menuPush(mainMenu());
+
+//When a user click on "Back" button of any section and it will return this function.
+function backToHome() {
+    menuPush(mainMenu());
+
+
 //When a user clicks on "Select Level" button then it should be run this function.
 const selectLevelId = document.querySelector("#selectLevel");
 if (selectLevelId) {
@@ -80,3 +85,6 @@ helpId.addEventListener("click",()=>{
     }
 
 })
+}
+
+backToHome();
