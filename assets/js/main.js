@@ -5,8 +5,8 @@ import {selectLevel} from "./frontEnd/menu/selectLevel.js";
 import { credits } from "./frontEnd/menu/credits.js";
 import { help } from "./frontEnd/menu/help.js";
 
+//It should return the main menu on start
 menuPush(mainMenu());
-
 //When a user clicks on "Select Level" button then it should be run this function.
 const selectLevelId = document.querySelector("#selectLevel");
 if (selectLevelId) {
