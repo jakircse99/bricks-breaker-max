@@ -7,7 +7,7 @@ export function credits() {
          <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-6 underline" id="credits">Credits</h2>
          <section class="flex flex-col w-full justify-center">
 
-          <h2 class="font-game text-white text-xl md:text-3xl text-center">Developed by</h2>
+          <h2 class="font-game text-white text-xl md:text-3xl text-center">Developed by</h2>cu
 
           <p class="font-game text-white p-5 md:text-2xl text-center">
             Jakir Hossain, Raktim Proloy Shakib Buyan, Joshim Uddin
