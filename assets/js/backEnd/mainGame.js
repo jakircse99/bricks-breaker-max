@@ -10,13 +10,6 @@ canvas.width = canvas.clientWidth * scale;
 canvas.height = canvas.clientHeight * scale;
 ctx.scale(scale, scale);
 
-// Added by raktim
-
-var ballX = 75;
-var ballSpeedX = 8;
-var ballY = 75;
-var ballSpeedY = 8;
-
 // Define paddle properties
 const paddle = {
     x: canvas.width / 2 - 75, // starting x position (centered horizontally)
@@ -107,7 +100,7 @@ document.addEventListener("click", runGame)
 var interval
 function runGame(){
     clearInterval(interval)
-    interval = setInterval(gameRun, 30)
+    interval = setInterval(gameRun, 1000)
 }
 
 document.onkeydown = function(evt) {
@@ -123,11 +116,11 @@ function gameRun(){
   ball.y += ballSpeedY;
   // ballY
   if(ball.y > canvas.height - (canvas.height - paddle.y) - ball.radius){
-    if(ball.x >= paddle.x && ball.x <= paddle.x + paddle.width){
+    // if(ball.x >= paddle.x && ball.x <= paddle.x + paddle.width){
       ballSpeedY = -ballSpeedY;
-    }else if(ball.y >= canvas.height - ball.radius ){
-      alert("game over")
-    }
+    // }else if(ball.y >= canvas.height - ball.radius ){
+    //   alert("game over")
+    // }
     // ballRest();
     // brickReset();
   } else if(ball.y < 0 + ball.radius){
