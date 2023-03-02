@@ -22,14 +22,22 @@ const paddle = {
   
   // Define ball properties
   const ball = {
-    x: paddle.x + paddle.width / 2, // center ball horizontally on paddle
-    y: canvas.height - 60, // starting y position 
-    radius: 20, // ball radius
+    // x: paddle.x + paddle.width / 2, // center ball horizontally on paddle
+    // y: canvas.height - 60, // starting y position 
+    x: 11, // center ball horizontally on paddle
+    y: 10, // starting y position 
+    radius: 10, // ball radius
     dx: 5, // ball x
     dy: -5, // ball y 
   };
   
   
+// Added by raktim
+
+var ballX = 75;
+var ballSpeedX = 2;
+var ballY = 75;
+var ballSpeedY = 2;
   
   function drawBall() {
     ctx.beginPath();
@@ -66,19 +74,59 @@ for (let c = 0; c < brickColumnCount; c++) {
   }
 }
 
-console.log(bricks);
+  // Create an array of bricks
+  const brickColor =[
+  
+    "Yellow",
+    "Green",
+    "Brown",
+    "Azure",
+    "Ivory",
+    "Teal",
+    "Silver",
+    "Navy blue",
+    "Pea green",
+    "Gray",
+    "Orange",
+    "Maroon",
+    "Charcoal",
+    "Aquamarine",
+    "Coral",
+    "Fuchsia",
+    "Wheat",
+    "Lime",
+    "Crimson",
+    "Khaki",
+    "Hot pink",
+    "Magenta",
+    "Olden",
+    "Plum",
+    "Olive",
+    "Cyan"
+    ];
+    const hitBricksValue = []
 // Draw the bricks on the canvas
 function drawBricks() {
+  const bricksStore = [];
+
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
       const brick = bricks[c][r];
+        // console.log("hitbricksvalue", hitBricksValue);
+      //Code for brickBreak
+      // if(bricks[c][r].x + bricks[c][r].y == 71) {
       ctx.beginPath();
       ctx.rect(brick.x, brick.y, brick.width, brick.height);
-      ctx.fillStyle = brick.color;
+      let number = Math.floor(Math.random()*10);
+      ctx.fillStyle = brickColor[0];
+      // bricksStore.push(bricks[c][r]);
       ctx.fill();
       ctx.closePath();
+      // }  
     }
   }
+
+// console.log(bricksStore);
 }
 
 // Draw everything on the canvas
@@ -100,7 +148,7 @@ document.addEventListener("click", runGame)
 var interval
 function runGame(){
     clearInterval(interval)
-    interval = setInterval(gameRun, 1000)
+    interval = setInterval(gameRun, 50)
 }
 
 document.onkeydown = function(evt) {
@@ -127,9 +175,9 @@ function gameRun(){
     ballSpeedY = -ballSpeedY;
   }
   // ballx
-  if(ball.x > canvas.width - ball.radius && ballSpeedX > 0.0){
+  if(ball.x > canvas.width - ball.radius){
     ballSpeedX = -ballSpeedX;
-  } else if(ball.x < 0 + ball.radius && ballSpeedX < 0.0){
+  } else if(ball.x < 0 + ball.radius){
     ballSpeedX = -ballSpeedX;
   }else{
     hitBrick()
@@ -151,33 +199,58 @@ function movingPaddle (e){
 
 function hitBrick(){
     for (let bricksIndex = 0; bricksIndex < bricks.length; bricksIndex++) {
-        const brickCol = bricks[bricksIndex];
-        for(let brickColIndex = 0; brickColIndex < brickCol.length; brickColIndex ++){
-          const brick = brickCol[brickColIndex]
-          // console.log(brick);
-          ctx.clearRect(830, 90, 81, 20);
-        }
-        // let brickLeft = parseInt(getComputedStyle(brick).left.replace("px", ""))
-        // let brickBottom = parseInt(getComputedStyle(brick).bottom.replace("px", ""))
-        // let brickHeight = parseInt(getComputedStyle(brick).height.replace("px", ""))
-        // let brickWidth = parseInt(getComputedStyle(brick).width.replace("px", ""))
-        // let brickDisplay = getComputedStyle(brick).display
+        const brickCol = bricks[bricksIndex]; 
+        for(let brickRowIndex = 0; brickRowIndex < brickCol.length; brickRowIndex ++){
+          const oneBrick = brickCol[brickRowIndex]
+        // // let brickLeft = oneBrick.x
+        // // let brickRight = oneBrick.x + oneBrick.width
+        // // let brickBottom = oneBrick.y + oneBrick.height
+        // // let brickTop = oneBrick.y
+        // // let brickDisplay = getComputedStyle(brick).display
+        // // console.log("left", brickLeft);
+        // // console.log("right", brickRight);
+        // // console.log("bottom", brickBottom);
+        // // console.log("top", brickTop);
         
-        // if(y >= (brickBottom - ballRadius) && y <= (brickBottom + brickHeight) && x >= (brickLeft - ballRadius) && x <= (brickLeft + brickWidth) && brickDisplay !== "none"){
-        //     if(y === (brickBottom - ballRadius)){
-        //         brokeBrick("bottom", brickBottom - ballRadius, brickLeft)
-        //         return yAdd = -2
-        //     }else if(y === (brickBottom + brickHeight)){
-        //         brokeBrick("top", brickBottom + brickHeight, brickLeft)
-        //         return yAdd = 2
-        //     }else if(x  === (brickLeft - ballRadius)){
-        //         brokeBrick("left", brickLeft - ballRadius, brickLeft)
-        //         return xAdd = -2 
-        //     }else if(x === (brickLeft + brickWidth)){
-        //         brokeBrick("right", brickLeft + brickWidth, brickLeft)
-        //         return xAdd = 2 
-        //     }
-        // }
+        // // if(ball.y >= (brickTop - ball.radius) && ball.y <= (brickTop + brick.height) && ball.x >= (brickLeft - ball.radius) && ball.x <= (brickLeft + brick.width)){
+        if(ball.y >= 50 && // 50 (brick.y - ball.radius) top
+        ball.y <= 90  && // 90 (brick.y + brick.height + ball.radius) bottom
+        ball.x >= 1 && // 1 (brick.x - ball.radius) left
+        ball.x <= 101 // 101 (brick.x + brick.width + ball.radius) right
+        ){
+          console.log("Hit");
+            if(ball.y == 50
+            ){
+              console.log("Top Hit");
+                // brokeBrick("bottom", brickBottom - ballRadius, brickLeft)
+                ballSpeedY = -2;
+                hitBricksValue.push(oneBrick)
+                break;
+            }else if(ball.y == 90
+            ){
+                // brokeBrick("top", brickBottom + brickHeight, brickLeft)
+                console.log("Bottom Hit");
+                ballSpeedY = 2;
+                hitBricksValue.push(oneBrick)
+                break;
+            }else if(ball.x == 1
+            ){
+              console.log("Left Hit");
+                // brokeBrick("left", brickLeft - ballRadius, brickLeft)
+                ballSpeedX = -2;
+                hitBricksValue.push(oneBrick)
+                break;
+            }else if(ball.x == 101
+            ){
+              console.log("right Hit");
+                // brokeBrick("right", brickLeft + brickWidth, brickLeft)
+                ballSpeedX = 2;
+                hitBricksValue.push(oneBrick)
+                break;
+            }
+            break;
+        }
+      }
     }
 }
 
