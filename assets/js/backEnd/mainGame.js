@@ -22,10 +22,10 @@ const paddle = {
   
   // Define ball properties
   const ball = {
-    // x: paddle.x + paddle.width / 2, // center ball horizontally on paddle
-    // y: canvas.height - 60, // starting y position 
-    x: 300, // center ball horizontally on paddle
-    y: 200, // starting y position 
+    x: paddle.x + paddle.width / 2, // center ball horizontally on paddle
+    y: canvas.height - 60, // starting y position 
+    // x: 100, // center ball horizontally on paddle
+    // y: 250, // starting y position 
     radius: 10, // ball radius
     dx: 5, // ball x
     dy: -5, // ball y 
@@ -34,10 +34,9 @@ const paddle = {
   
 // Added by raktim
 
-var ballX = 75;
 var ballSpeedX = 2;
-var ballY = 75;
 var ballSpeedY = 2;
+var gameStarted = false
   
   function drawBall() {
     ctx.beginPath();
@@ -62,6 +61,8 @@ const brickHeight = 20;
 const brickPadding = 10;
 const brickOffsetTop = 30; //similler to y
 const brickOffsetLeft = 11; //similler to x
+
+// brickOffsetTop * brickRowCount + brickHeight + brickPadding
 
 // Create an array of bricks
 const bricks = [];
@@ -104,11 +105,12 @@ for (let c = 0; c < brickColumnCount; c++) {
     "Olive",
     "Cyan"
     ];
-    const hitBricksValue = []
 
-    function removeDuplicates(arr) {
-      return arr.filter((item, 
-          index) => arr.indexOf(item) === index);
+  let storageHitBrickArray = JSON.parse(localStorage.getItem("hitBrickArray"))
+  let hitBricksValue = storageHitBrickArray != null ? storageHitBrickArray : []
+  function removeDuplicates(arr) {
+    return arr.filter((item, 
+        index) => arr.indexOf(item) === index);
   }
 // Draw the bricks on the canvas
 let bricksStore = [];
@@ -117,9 +119,9 @@ function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
       const brick = bricks[c][r];
-      
       //Code for brickBreak
       if(!removeDuplicates(hitBricksValue).includes(bricks[c][r].x + bricks[c][r].y)) {
+      // if(bricks[c][r].x + bricks[c][r].y == 647) {
       ctx.beginPath();
       ctx.rect(brick.x, brick.y, brick.width, brick.height);
       let number = Math.floor(Math.random()*10);
@@ -145,15 +147,16 @@ function draw() {
   drawPaddle();
 }
 
-// draw();
+draw();
 
 // Added by raktim
-document.addEventListener("click", runGame)
+canvas.addEventListener("click", runGame)
 
 var interval
 function runGame(){
-    clearInterval(interval)
-    interval = setInterval(gameRun, 10)
+  gameStarted = true
+  clearInterval(interval)
+  interval = setInterval(gameRun, 10)
 }
 
 document.onkeydown = function(evt) {
@@ -163,24 +166,34 @@ document.onkeydown = function(evt) {
   }
 };
 
-function gameRun(){
+function gameOver(){
+  clearInterval(interval)
+  gameStarted = false
+  bricksStore = []
+  hitBricksValue = []
+  localStorage.clear()
+  defaultPaddleAndBallPos()
+}
 
-  // ball.x = 5
+function defaultPaddleAndBallPos(){
+  ball.x =paddle.x + paddle.width / 2
+  ball.y = canvas.height - 50, 
+  draw()
+}
+
+function gameRun(){
   ball.x += ballSpeedX;
   ball.y += ballSpeedY;
-  // ballY
+
   if(ball.y > canvas.height - (canvas.height - paddle.y) - ball.radius){
     if(ball.x >= paddle.x && ball.x <= paddle.x + paddle.width){
       ballSpeedY = -ballSpeedY;
     }else if(ball.y >= canvas.height - ball.radius ){
-      alert("game over")
+      gameOver()
     }
-    // ballRest();
-    // brickReset();
   } else if(ball.y < 0 + ball.radius){
     ballSpeedY = -ballSpeedY;
   }
-  // ballx
   if(ball.x > canvas.width - ball.radius){
     ballSpeedX = -ballSpeedX;
   } else if(ball.x < 0 + ball.radius){
@@ -199,105 +212,56 @@ function movingPaddle (e){
   const paddlePos = mousePos - paddle.width/2
   if(paddlePos >= 0 && paddlePos <= canvas.width - paddle.width){
     paddle.x = mousePos - paddle.width/2
-    // draw()
+  }
+  if(!gameStarted){
+    defaultPaddleAndBallPos()
   }
 }
 
+let bricksIndex;
 function hitBrick(){
   let offLoop = false
-    for (let bricksIndex = 0; bricksIndex < bricksStore.length; bricksIndex++) {
+    for (bricksIndex = 0; bricksIndex < bricksStore.length; bricksIndex++) {
         const oneBrick = bricksStore[bricksIndex]
         const brickSum = oneBrick.x + oneBrick.y
-        if( ball.y <= (oneBrick.y + oneBrick.height + ball.radius) && // 50 (brick.y - ball.radius) top
-        ball.y >= (oneBrick.y - ball.radius)  && // 90 (brick.y + brick.height + ball.radius) bottom
-        ball.x >= (oneBrick.x - ball.radius) && // 1 (brick.x - ball.radius) left
-        ball.x <= (oneBrick.x + oneBrick.width + ball.radius) && // 101 (brick.x + brick.width + ball.radius) right
+
+        if( ball.y <= (oneBrick.y + oneBrick.height + ball.radius) &&
+        ball.y >= (oneBrick.y - ball.radius)  &&
+        ball.x >= (oneBrick.x - ball.radius) &&
+        ball.x <= (oneBrick.x + oneBrick.width + ball.radius) &&
         !removeDuplicates(hitBricksValue).includes(brickSum)
         ){
-            if(ball.y == (oneBrick.y - ball.radius)
-            ){
-              console.log("Top Hit");
-                brokeBrick("top", ball.y + ball.radius, ball.x)
-                ballSpeedY = -2;
-                offLoop = true
-                break;
-            }else if(ball.y == (oneBrick.y + oneBrick.height + ball.radius)
-            ){
-                brokeBrick("bottom", ball.y - ball.radius - oneBrick.height, ball.x)
-                console.log("Bottom Hit");
-                console.log(oneBrick);
-                ballSpeedY = 2;
-                offLoop = true
-                break;
-            }else if(ball.x == (oneBrick.x - ball.radius)
-            ){
-              console.log("Left Hit");
-                brokeBrick("left", ball.y, ball.x + ball.radius, oneBrick)
-                ballSpeedX = -2;
-                offLoop = true
-                break;
-            }else if(ball.x == (oneBrick.x + oneBrick.width + ball.radius)
-            ){
-              console.log("right Hit");
-                brokeBrick("right", ball.y, ball.x - ball.radius - oneBrick.width )
-                ballSpeedX = 2;
-                offLoop = true
-                break;
-            }
+          if(ball.y == (oneBrick.y + oneBrick.height + ball.radius)){
+            ballSpeedY = 2;
+            hitBricksValue.push(oneBrick.x + oneBrick.y)
+            localStorage.setItem("hitBrickArray", JSON.stringify(hitBricksValue))
+            offLoop = true
             break;
+          }else if(ball.x == (oneBrick.x + oneBrick.width + ball.radius)){
+            ballSpeedX = 2;
+            hitBricksValue.push(oneBrick.x + oneBrick.y)
+            localStorage.setItem("hitBrickArray", JSON.stringify(hitBricksValue))
+            offLoop = true
+            break;
+          }else if(ball.y == (oneBrick.y - ball.radius)){
+            ballSpeedY = -2;
+            hitBricksValue.push(oneBrick.x + oneBrick.y)
+            localStorage.setItem("hitBrickArray", JSON.stringify(hitBricksValue))
+            offLoop = true
+            break;
+          }else{
+            ballSpeedX = -2;
+            hitBricksValue.push(oneBrick.x + oneBrick.y)
+            localStorage.setItem("hitBrickArray", JSON.stringify(hitBricksValue))
+            offLoop = true
+            break;
+          }
         }
+
         if(offLoop){
           break;
         }
     }
-}
-
-function brokeBrick(side, brickY, brickX ){
-  let offLoop = false
-  for (let bricksIndex = 0; bricksIndex < bricksStore.length; bricksIndex++) {
-    const oneBrick = bricksStore[bricksIndex]; 
-      if(side === "top"){
-        if(brickY === oneBrick.y){
-          if(brickX >= oneBrick.x && brickX <= oneBrick.x + oneBrick.width + ball.radius){
-            hitBricksValue.push(oneBrick.x + oneBrick.y)
-            console.log(side, brickY, brickX);
-            offLoop = true
-            break;
-          }
-        }
-      }else if(side === "bottom"){
-        if(brickY === oneBrick.y){
-          if(brickX >= oneBrick.x && brickX <= oneBrick.x + oneBrick.width + ball.radius){
-            hitBricksValue.push(oneBrick.x + oneBrick.y)
-            console.log(side, brickY, brickX);
-            offLoop = true
-            break;
-          }
-        }
-      }else if(side === "right"){
-        if(brickX === oneBrick.x){
-          if(brickY >= oneBrick.y && brickY <= oneBrick.y + oneBrick.height){
-            hitBricksValue.push(oneBrick.x + oneBrick.y)
-            console.log(side, brickY, brickX);
-            offLoop = true
-            break;
-          }
-        }
-    }else if(side === "left"){
-      if(brickX === oneBrick.x){
-        if(brickY >= oneBrick.y && brickY <= oneBrick.y + oneBrick.height){
-          hitBricksValue.push(oneBrick.x + oneBrick.y)
-          console.log(side, brickY, brickX);
-          offLoop = true
-          break;
-        }
-      }
-  }
-    if(offLoop){
-      break;
-    }
-  }
-  
 }
 
 }
