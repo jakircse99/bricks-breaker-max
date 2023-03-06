@@ -2,12 +2,12 @@ export function credits() {
     return `
     
     <!-- "Credits Section" section design started -->
-    <div class="backdrop-blur-sm bg-[#111827bd] border border-gray-500 rounded w-full h-fit md:w-1/2 lg:w-1/3">
-      <section class="flex flex-col items-center justify-center" id="creditsMenu">
+    <div class="backdrop-blur-sm bg-[#111827bd] border border-gray-500 rounded w-full h-[350px] md:w-1/2 lg:w-1/3 transition-all duration-500" id="creditMenu">
+      <section class="flex flex-col items-center justify-center transition-opacity duration-500" id="creditsMenuFirstChild">
          <h2 class="font-game text-2xl md:text-4xl text-gray-100 my-6 underline" id="credits">Credits</h2>
          <section class="flex flex-col w-full justify-center">
 
-          <h2 class="font-game text-white text-xl md:text-3xl text-center">Developed by</h2>cu
+          <h2 class="font-game text-white text-xl md:text-3xl text-center">Developed by</h2>
 
           <p class="font-game text-white p-5 md:text-2xl text-center">
             Jakir Hossain, Raktim Proloy Shakib Buyan, Joshim Uddin

@@ -564,46 +564,8 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .fixed {
   position: fixed;
-}
-
-.absolute {
-  position: absolute;
 }
 
 .m-2 {
@@ -634,16 +596,12 @@ video {
   margin-left: 1.25rem;
 }
 
-.mt-7 {
-  margin-top: 1.75rem;
-}
-
 .mb-5 {
   margin-bottom: 1.25rem;
 }
 
-.block {
-  display: block;
+.mt-7 {
+  margin-top: 1.75rem;
 }
 
 .flex {
@@ -666,26 +624,90 @@ video {
   height: 50%;
 }
 
-.h-fit {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+.h-\[350px\] {
+  height: 350px;
+}
+
+.h-\[450px\] {
+  height: 450px;
 }
 
 .h-16 {
   height: 4rem;
 }
 
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-\[\] {
+  height: ;
+}
+
+.h-\[1\] {
+  height: 1;
+}
+
+.h-\[15\] {
+  height: 15;
+}
+
+.h-\[150\] {
+  height: 150;
+}
+
+.h-\[150p\] {
+  height: 150p;
+}
+
+.h-\[150px\] {
+  height: 150px;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[550px\] {
+  height: 550px;
+}
+
+.h-\[950px\] {
+  height: 950px;
+}
+
+.h-\[650px\] {
+  height: 650px;
+}
+
+.h-\[750px\] {
+  height: 750px;
+}
+
+.h-\[850px\] {
+  height: 850px;
+}
+
+.h-\[60px\] {
+  height: 60px;
+}
+
+.h-\[600px\] {
+  height: 600px;
+}
+
+.h-\[500px\] {
+  height: 500px;
+}
+
+.max-h-\[650px\] {
+  max-height: 650px;
+}
+
 .w-full {
   width: 100%;
-}
-
-.w-1\/2 {
-  width: 50%;
-}
-
-.w-1 {
-  width: 0.25rem;
 }
 
 .w-16 {
@@ -732,28 +754,9 @@ video {
   border-width: 1px;
 }
 
-.border-b-2 {
-  border-bottom-width: 2px;
-}
-
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
 .border-gray-500 {
   --tw-border-opacity: 1;
   border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-
-.border-b-gray-900 {
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(17 24 39 / var(--tw-border-opacity));
-}
-
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#111827bd\] {
@@ -794,6 +797,14 @@ video {
   padding: 0.25rem;
 }
 
+.p-7 {
+  padding: 1.75rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -827,10 +838,6 @@ video {
   line-height: 1rem;
 }
 
-.uppercase {
-  text-transform: uppercase;
-}
-
 .text-gray-100 {
   --tw-text-opacity: 1;
   color: rgb(243 244 246 / var(--tw-text-opacity));
@@ -846,10 +853,30 @@ video {
           text-decoration-line: underline;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .backdrop-blur-sm {
   --tw-backdrop-blur: blur(4px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
 }
 
 .dark .dark\:bg-gray-900 {
@@ -868,6 +895,21 @@ video {
 
   .md\:p-5 {
     padding: 1.25rem;
+  }
+
+  .md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .md\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .md\:pl-14 {
