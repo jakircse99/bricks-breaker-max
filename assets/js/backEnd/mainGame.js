@@ -64,17 +64,6 @@ const brickOffsetLeft = 11; //similler to x
 
 // brickOffsetTop * brickRowCount + brickHeight + brickPadding
 
-// Create an array of bricks
-const bricks = [];
-for (let c = 0; c < brickColumnCount; c++) {
-  bricks[c] = [];
-  for (let r = 0; r < brickRowCount; r++) {
-    const x = c * (brickWidth + brickPadding) + brickOffsetLeft;
-    const y = r * (brickHeight + brickPadding) + brickOffsetTop;
-    bricks[c][r] = { x, y, width: brickWidth, height: brickHeight, color: "#0095DD" };
-  }
-}
-
   // Create an array of bricks
   const brickColor =[
     "Black",
@@ -105,6 +94,18 @@ for (let c = 0; c < brickColumnCount; c++) {
     "Olive",
     "Cyan"
     ];
+// Create an array of bricks
+const bricks = [];
+for (let c = 0; c < brickColumnCount; c++) {
+  bricks[c] = [];
+  for (let r = 0; r < brickRowCount; r++) {
+    const x = c * (brickWidth + brickPadding) + brickOffsetLeft;
+    const y = r * (brickHeight + brickPadding) + brickOffsetTop;
+    bricks[c][r] = { x, y, width: brickWidth, height: brickHeight, brickColor };
+  }
+}
+
+
 
   let storageHitBrickArray = JSON.parse(localStorage.getItem("hitBrickArray"))
   let hitBricksValue = storageHitBrickArray != null ? storageHitBrickArray : []
@@ -125,7 +126,7 @@ function drawBricks() {
       ctx.beginPath();
       ctx.rect(brick.x, brick.y, brick.width, brick.height);
       let number = Math.floor(Math.random()*10);
-      ctx.fillStyle = brickColor[0];
+      ctx.fillStyle = brickColor[number];
       bricksStore.push(bricks[c][r]);
       ctx.fill();
       ctx.closePath();
