@@ -6,18 +6,29 @@ import { help } from "./frontEnd/menu/help.js";
 import { StartGame } from "./backEnd/mainGame.js";
 import { gameCanvas } from "./backEnd/gameCanvas.js";
 
+//Expanding the height width
+import { expandWidth } from "./frontEnd/menu/logicalFundamentals/expandWidth.js";
+import { expandHeight } from "./frontEnd/menu/logicalFundamentals/expandHeight.js";
+
+
 //When a user click on "Back" button of any section and it will return this function.
 function homePage() {
     //Pushing the main menu on start
     menuPush(mainMenu());
 
     //When user click on `Back` button then show the main menu
-    function BackToHome(id) {
-        const back = document.querySelector(id);
-        if (id) {
+    function BackToHome(parentId,firstChild,existingWidth,existingHeight,btnId) {
+        const back = document.querySelector(btnId);
+        if (btnId) {
             back.addEventListener("click", () => {
+
+                expandWidth(parentId, firstChild,existingWidth,"lg:w-1/3"); //This width is only for main menu.
+                expandHeight(parentId, existingHeight,"h-1/2") //This height only for main menu.
+                setTimeout(() => {
+                    
                 //It should be return the "Main" menu.
                 homePage();
+                }, 500);
             })
         }
     }
@@ -29,37 +40,61 @@ function homePage() {
     if (selectLevelId) {
         selectLevelId.addEventListener("click", () => {
 
+            expandWidth("#mainMenu", "#mainMenuFirstChild","lg:w-1/3","lg:w-1/2");
+            expandHeight("#mainMenu", "h-1/2","h-[450px]")
+            setTimeout(() => {
+
             menuPush(selectLevel());
-            BackToHome("#selectLevelToMainMenu")
+            BackToHome("#selectLevelParent","#selectLevelFirstChild","lg:w-1/2", "h-[450px]", "#selectLevelToMainMenu");
+
+                }, 500);
 
         })
     }
 
-    //When a user clicks on "Credits" button then it should be run this function.
     const creditsId = document.querySelector("#credits");
     creditsId.addEventListener("click", () => {
 
+        expandWidth("#mainMenu", "#mainMenuFirstChild","lg:w-1/3","lg:w-1/3");
+        expandHeight("#mainMenu", "h-1/2","h-[350px]")
+
+        setTimeout(() => {
         menuPush(credits());
-        BackToHome("#creditsToMainMenu")
+
+        BackToHome("#creditMenu","#creditsMenuFirstChild","lg:w-1/3", "h-[350px]", "#creditsToMainMenu");
+        }, 500);
+
 
     })
 
 
-    //When a user clicks on "Help" button then it should be run this function.
     const helpId = document.querySelector("#help");
     helpId.addEventListener("click", () => {
 
+
+        expandWidth("#mainMenu", "#mainMenuFirstChild","lg:w-1/3","xl:w-1/2");
+        expandHeight("#mainMenu", "h-1/2","h-[500px]");
+        
+        setTimeout(() => {
         menuPush(help());
-        BackToHome("#helpToMainMenu")
+
+        BackToHome("#helpMenu","#helpMenuFirstChild","xl:w-1/2", "h-[550px]", "#helpToMainMenu");
+    }, 500);
+
 
     })
 
-    //When a user clicks on "New Game" buttn then it should start a new game
     const newGameId = document.querySelector("#newGame");
     newGameId.addEventListener("click",()=>{
-        menuPush(gameCanvas());
-        StartGame();
+
+        expandWidth("#mainMenu", "#mainMenuFirstChild","lg:w-1/3","md:w-1/2");
+        expandHeight("#mainMenu", "h-1/2","h-[850px]")
+
+        setTimeout(() => {
+            menuPush(gameCanvas());
+            StartGame();
+        }, 500);
+
     })
 }
-
 homePage();
